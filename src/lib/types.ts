@@ -1,24 +1,3 @@
-type Dimensions = {
-	width: number;
-	height: number;
-	depth: number;
-};
-
-type Review = {
-	rating: number;
-	comment: string;
-	date: string;
-	reviewerName: string;
-	reviewerEmail: string;
-};
-
-type Meta = {
-	createdAt: string;
-	updatedAt: string;
-	barcode: string;
-	qrCode: string;
-};
-
 export type Product = {
 	id: number;
 	title: string;
@@ -42,4 +21,31 @@ export type Product = {
 	meta: Meta;
 	thumbnail: string;
 	images: string[];
+};
+
+type Dimensions = {
+	width: number;
+	height: number;
+	depth: number;
+};
+
+type Review = {
+	rating: number;
+	comment: string;
+	date: string;
+	reviewerName: string;
+	reviewerEmail: string;
+};
+
+type Meta = {
+	createdAt: string;
+	updatedAt: string;
+	barcode: string;
+	qrCode: string;
+};
+
+export type Category = {
+	slug: string;
+	name: string;
+	url: string;
 };

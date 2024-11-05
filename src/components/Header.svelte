@@ -1,5 +1,10 @@
 <script lang="ts">
+	import type { Category } from '$lib/types';
 	import cartIcon from '../assets/cartIcon.png';
+	interface Props {
+		categories: Category[];
+	}
+	const { categories }: Props = $props();
 	let isOpen = $state(false);
 </script>
 

@@ -1,6 +1,7 @@
 <script lang="ts">
-	import type { Product } from '../lib/types';
-	const { data }: { data: { products: Product[] } } = $props();
+	import type { PageData } from './$types';
+	const { data }: { data: PageData } = $props();
+	console.log(data.products);
 </script>
 
 <div class="flex flex-col md:grid md:grid-cols-3 lg:grid-cols-4 gap-4 w-3/5 mx-auto py-6">
