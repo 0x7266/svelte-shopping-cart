@@ -1,10 +1,9 @@
 <script lang="ts">
 	import type { Product } from '$lib/types';
 	import type { PageData } from './$types';
+	import { productsOnCart } from '../store/store.svelte';
 
 	const { data }: { data: PageData } = $props();
-	const order = $state<{ id: string; products: Product[]; quantity: number }[]>([]);
-
 	function generateRating() {
 		return Math.floor(Math.random() * (5 - 1) + 1);
 	}
@@ -25,8 +24,15 @@
 						</span>
 						<span>${product.price}</span>
 					</div>
-					<button class="font-semibold justify-self-end bg-lime-200 rounded-lg py-2 px-4"
-						>Add to cart</button
+					<button
+						class="font-semibold justify-self-end bg-lime-200 rounded-lg py-2 px-4"
+						onclick={() => {
+							productsOnCart.push({
+								id: Math.floor(Math.random()).toString(),
+								product,
+								quantity: 1
+							});
+						}}>Add to cart</button
 					>
 				</div>
 			</div>

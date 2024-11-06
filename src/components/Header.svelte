@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Category } from '$lib/types';
 	import cartIcon from '../assets/cartIcon.png';
+	import CartList from './CartList.svelte';
 	interface Props {
 		categories: Category[];
 	}
@@ -32,7 +33,13 @@
 				></button
 			>
 			{#if isOpen}
-				<div class="absolute bg-neutral-200 w-20 h-24 rounded-2xl right-2 top-10"></div>
+				<div
+					class="absolute bg-white text-black min-w-96 p-8 rounded-2xl right-2 top-10 flex flex-col gap-2"
+				>
+					<p>Your cart</p>
+					<CartList />
+					<p>Total</p>
+				</div>
 			{/if}
 		</div>
 	</div>

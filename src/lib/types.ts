@@ -49,3 +49,9 @@ export type Category = {
 	name: string;
 	url: string;
 };
+
+export type ProductOnCart = {
+	id: string;
+	product: Product;
+	quantity: number;
+};
