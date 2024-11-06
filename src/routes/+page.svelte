@@ -1,19 +1,35 @@
 <script lang="ts">
+	import type { Product } from '$lib/types';
 	import type { PageData } from './$types';
+
 	const { data }: { data: PageData } = $props();
-	console.log(data.products);
+	const order = $state<{ id: string; products: Product[]; quantity: number }[]>([]);
+
+	function generateRating() {
+		return Math.floor(Math.random() * (5 - 1) + 1);
+	}
 </script>
 
-<div class="flex flex-col md:grid md:grid-cols-3 lg:grid-cols-4 gap-4 w-3/5 mx-auto py-6">
+<div
+	class="flex justify-center items-center flex-col md:grid w-full md:grid-cols-3 lg:grid-cols-6 gap-6 p-6"
+>
 	{#each data.products as product}
-		<div
-			class="flex flex-col gap-4 border-2 border-neutral-300 shadow-md p-4 rounded-xl bg-neutral-400"
-		>
-			<img src={product.thumbnail} alt={product.title} class="border rounded-xl" />
-			<p class="text-lg font-semibold flex justify-between">
+		<div class="flex flex-col gap-4">
+			<img src={product.thumbnail} alt={product.title} class="bg-gray-100 rounded-xl" />
+			<div class="flex flex-col justify-between leading-tight">
 				{product.title}
-				<span>{product.price}</span>
-			</p>
+				<div class="grid grid-cols-2 items-end">
+					<div class="flex flex-col">
+						<span class="text-sm">
+							{'⭐'.repeat(generateRating())}
+						</span>
+						<span>${product.price}</span>
+					</div>
+					<button class="font-semibold justify-self-end bg-lime-200 rounded-lg py-2 px-4"
+						>Add to cart</button
+					>
+				</div>
+			</div>
 		</div>
 	{/each}
 </div>

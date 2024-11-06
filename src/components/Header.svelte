@@ -8,7 +8,7 @@
 	let isOpen = $state(false);
 </script>
 
-<header class="bg-orange-900 flex flex-col justify-center text-white">
+<header class="bg-orange-900 flex flex-col justiy-center text-white">
 	<div class="flex justify-between items-center gap-4 py-2 px-6">
 		<span class="font-bold text-4xl">SvelteMart</span>
 		<div class="flex flex-col justify-center">
