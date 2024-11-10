@@ -1,26 +1,13 @@
 <script lang="ts">
 	import type { ProductOnCart } from '$lib/types';
 	import { productsOnCart } from '../store/store.svelte';
-
-	function addToCart(p: ProductOnCart) {
-		if (p.id in productsOnCart) {
-			p.quantity++;
-			return;
-		}
-		productsOnCart.push({
-			product: p.product,
-			id: p.id,
-			quantity: 0
-		});
-		p.quantity++;
-	}
 </script>
 
 <div class="flex flex-col gap-2 min-h-60 items-center">
-	{#if productsOnCart.length == 0}
+	{#if Object.keys(productsOnCart).length == 0}
 		<div class="text-2xl font-semibold">No products on cart</div>
 	{:else}
-		{#each productsOnCart as product}
+		{#each Object.values(productsOnCart) as product}
 			{@render item(product)}
 		{/each}
 	{/if}

@@ -51,7 +51,7 @@ export type Category = {
 };
 
 export type ProductOnCart = {
-	id: string;
+	id: number;
 	product: Product;
 	quantity: number;
 };
