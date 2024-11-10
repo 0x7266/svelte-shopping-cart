@@ -1,9 +1,26 @@
 <script lang="ts">
-	import type { Product } from '$lib/types';
+	import type { ProductOnCart } from '$lib/types';
 	import type { PageData } from './$types';
-	import { productsOnCart } from '../store/store.svelte';
+	import { productsOnCart, cartDrawer } from '../store/store.svelte';
 
 	const { data }: { data: PageData } = $props();
+
+	export function addToCart(p: ProductOnCart) {
+		if (!cartDrawer.isOpen) {
+			cartDrawer.isOpen = !cartDrawer.isOpen;
+		}
+		if (p.id in productsOnCart) {
+			p.quantity++;
+			return;
+		}
+		productsOnCart.push({
+			product: p.product,
+			id: p.id,
+			quantity: 0
+		});
+		p.quantity++;
+	}
+
 	function generateRating() {
 		return Math.floor(Math.random() * (5 - 1) + 1);
 	}
@@ -27,8 +44,8 @@
 					<button
 						class="font-semibold justify-self-end bg-lime-200 rounded-lg py-2 px-4"
 						onclick={() => {
-							productsOnCart.push({
-								id: Math.floor(Math.random()).toString(),
+							addToCart({
+								id: product.id.toString(),
 								product,
 								quantity: 1
 							});

@@ -1,12 +1,11 @@
 <script lang="ts">
-	import type { Category } from '$lib/types';
 	import cartIcon from '../assets/cartIcon.png';
+	import { cartDrawer } from '../store/store.svelte';
 	import CartList from './CartList.svelte';
-	interface Props {
-		categories: Category[];
-	}
-	const { categories }: Props = $props();
-	let isOpen = $state(false);
+	// interface Props {
+	//  	categories: Category[];
+	// }
+	// const { categories }: Props = $props();
 </script>
 
 <header class="bg-orange-900 flex flex-col justiy-center text-white">
@@ -27,16 +26,16 @@
 			<p class="text-base font-semibold leading-none">e pedidos</p>
 		</div>
 		<div class="relative">
-			<button class="flex items-end" onclick={() => (isOpen = !isOpen)}
+			<button class="flex items-end" onclick={() => (cartDrawer.isOpen = !cartDrawer.isOpen)}
 				><img src={cartIcon} class="w-8 filter invert" alt="cart" /><span
 					class="text-sm font-semibold">Carrinho</span
 				></button
 			>
-			{#if isOpen}
+			{#if cartDrawer.isOpen}
 				<div
-					class="absolute bg-white text-black min-w-96 p-8 rounded-2xl right-2 top-10 flex flex-col gap-2"
+					class="absolute bg-neutral-100 text-black min-w-[28rem] min-h-fit p-4 rounded-lg right-2 top-10 flex justify-around flex-col gap-4"
 				>
-					<p>Your cart</p>
+					<p class="border-b-2 pb-2">Your cart</p>
 					<CartList />
 					<p>Total</p>
 				</div>
